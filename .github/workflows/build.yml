@@ -23,6 +23,14 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: ''
+
+      - name: Install Android platforms
+        run: |
+          sdkmanager --version
+          yes | sdkmanager --licenses
+          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
       - name: Cache Gradle
         uses: actions/cache@v4
@@ -37,7 +45,7 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Setup Gradle 8.7 (fallback if wrapper jar missing)
+      - name: Setup Gradle 8.7
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: 8.7
@@ -54,22 +62,23 @@ jobs:
           fi
 
       - name: Build Debug APK (Galaxy Watch 8 - Wear OS 6 - 480x480)
-        run: ./gradlew assembleDebug --stacktrace --info
+        run: ./gradlew assembleDebug --stacktrace
 
       - name: Build Release APK
         run: ./gradlew assembleRelease --stacktrace
 
       - name: List APKs
         run: |
-          find app/build/outputs -name "*.apk" -type f | xargs ls -lh
+          find app/build/outputs -type f -name "*.apk" | xargs ls -lh || true
           echo "--- APK details ---"
-          find app/build/outputs -name "*.apk" -exec sh -c 'echo "=== $1 ==="; aapt dump badging "$1" 2>&1 | head -n 30' _ {} \;
+          for f in $(find app/build/outputs -name "*.apk"); do echo "=== $f ==="; aapt dump badging "$f" 2>&1 | head -n 20 || true; done
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
           name: ScritchyScratchy-Watch-Debug-APK
           path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
           retention-days: 30
 
       - name: Upload Release APK
@@ -77,6 +86,7 @@ jobs:
         with:
           name: ScritchyScratchy-Watch-Release-APK
           path: app/build/outputs/apk/release/*.apk
+          if-no-files-found: warn
           retention-days: 30
 
       - name: Create Release (on tag)
