@@ -217,3 +217,48 @@ Bulaşık yıka (1$ / tabak) → 5$ → Dükkan → Kart al (5-2500$)
 **İyi kazımalar! 🍀💰**
 
 > Galaxy Watch 8'in bezelini çevirerek listelerde gezin, parmağınla kazı — Scritchy Scratchy artık bileğinde, tamamen aynı!
+
+---
+
+## ❗ APK yüklenemiyor? (Çözüm) — v1.0.2 imzalı
+
+**Sık hatalar (Watch 8) ve çözümü:**
+
+1. **`INSTALL_PARSE_FAILED_NO_CERTIFICATES`**
+   * Eski `release-unsigned`’ı kurdun. **v1.0.2’den beri hem debug hem release debug key ile imzalı.** Lütfen `Releases/watch-latest`’ten **`ScritchyScratchy-GalaxyWatch8-debug.apk`** (8.2 MB) indir. `app-release-unsigned.apk` artık yok, `ScritchyScratchy-GalaxyWatch8-release.apk` da imzalı.
+
+2. **`INSTALL_FAILED_MISSING_FEATURE: android.hardware.type.watch`**
+   * APK’yı **telefona değil, doğrudan saate** kur: `adb connect <SAAT_IP>:<PORT>` sonra `adb install`. Telefona kurarsan bu hatayı verir.
+
+3. **`device offline` / `no devices`**
+   * Saatte `Kablosuz hata ayıklama` → `Yeni cihaz eşle` → `adb pair` → `adb connect`. Aynı Wi-Fi.
+
+4. **`INSTALL_FAILED_VERSION_DOWNGRADE`**
+   * Eski paket yüklü: `adb uninstall com.scritchyscratchy.watch` sonra tekrar yükle.
+
+5. **Doğrudan .apk linkleri (ZIP yok):**
+   * https://github.com/StrongBomber/ScratchCards/releases/tag/watch-latest → `ScritchyScratchy-GalaxyWatch8-debug.apk`
+
+**Doğrulama:**
+```bash
+adb shell pm list packages | grep scritchy
+# package:com.scritchyscratchy.watch
+adb shell monkey -p com.scritchyscratchy.watch -c android.intent.category.LAUNCHER 1
+```
+
+---
+
+## 🔍 Neden birebir aynı? Kanıt
+
+`docs/BIREBIR_KANIT.md` ve görsel:
+
+![Watch Preview](docs/watch-preview.png)
+
+| Orijinal | Klon | Kod |
+|---|---|---|
+| Bulaşık $1 | `DishJobIntro` 92dp | `MainActivity.kt:445` |
+| 7 kart | `CardCatalog` | `GameModels.kt:18` |
+| Kazı %70 | `ScratchCardView` %72 Clear Offscreen | `ScratchCardView.kt` |
+| Prestij JP | `FINAL_CHANCE` 0.01 | `GameModels.kt:85` |
+
+Ayrıntı: `docs/BIREBIR_KANIT.md`

@@ -11,8 +11,8 @@ android {
         applicationId = "com.scritchyscratchy.watch"
         minSdk = 26
         targetSdk = 34
-        versionCode = 2
-        versionName = "1.0.1"
+        versionCode = 3
+        versionName = "1.0.2"
 
         // Galaxy Watch 8 - Wear OS 6 (API 34) - Round 480x480
         // Also supports Watch 5/6/7 - minSdk 26
@@ -25,10 +25,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
         debug {
             isDebuggable = true
-            applicationIdSuffix = ".debug"
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
