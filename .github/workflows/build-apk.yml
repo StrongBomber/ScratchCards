@@ -46,7 +46,30 @@ jobs:
           ls -lh gradle/wrapper/
 
       - name: APK derle (birebir Watch 8)
-        run: ./gradlew assembleDebug assembleRelease --stacktrace
+        run: |
+          set +e
+          ./gradlew assembleDebug assembleRelease --stacktrace 2>&1 | tee build.log
+          EXIT=${PIPESTATUS[0]}
+          echo "EXIT=$EXIT" >> build.log
+          if [ $EXIT -ne 0 ]; then
+            echo "Build failed, saving log"
+            mkdir -p logs
+            cp build.log logs/build-apk.log
+            cat build.log | tail -n 400
+          fi
+          exit $EXIT
+
+      - name: Save build log on failure
+        if: failure()
+        run: |
+          mkdir -p logs
+          cp build.log logs/build-apk.log || true
+          cat build.log | tail -n 800 || true
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f logs/build-apk.log || true
+          git commit -m "ci: apk build log [skip ci]" || true
+          git push origin HEAD:arena/01a0cf4f-scratchcards || true
 
       - name: APK'leri listele
         run: |
