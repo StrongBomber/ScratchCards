@@ -13,7 +13,6 @@
 > Task :app:parseDebugLocalResources
 > Task :app:processDebugMainManifest
 > Task :app:processDebugManifest
-> Task :app:processDebugManifestForPackage
 > Task :app:javaPreCompileDebug
 > Task :app:mergeDebugShaders
 > Task :app:compileDebugShaders NO-SOURCE
@@ -22,20 +21,28 @@
 > Task :app:compressDebugAssets
 > Task :app:desugarDebugFileDependencies
 > Task :app:mergeDebugStartupProfile
-> Task :app:processDebugResources
-> Task :app:mergeDebugJniLibFolders
+> Task :app:processDebugManifestForPackage
 > Task :app:checkDebugDuplicateClasses
+> Task :app:mergeDebugJniLibFolders
+> Task :app:mergeLibDexDebug
 > Task :app:mergeDebugNativeLibs NO-SOURCE
 > Task :app:stripDebugDebugSymbols NO-SOURCE
-> Task :app:mergeLibDexDebug
+> Task :app:processDebugResources
 > Task :app:validateSigningDebug
 > Task :app:writeDebugAppMetadata
 > Task :app:writeDebugSigningConfigVersions
 > Task :app:mergeExtDexDebug
+> Task :app:compileDebugKotlin
+e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelBrewing.kt:10:39 'name' hides member of supertype 'Enum' and needs 'override' modifier
+e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelBrewing.kt:33:42 'name' hides member of supertype 'Enum' and needs 'override' modifier
+e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelBrewing.kt:43:41 'name' hides member of supertype 'Enum' and needs 'override' modifier
+e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelBrewing.kt:366:74 Type mismatch: inferred type is Float? but Float was expected
+e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelBrewingScreen.kt:104:107 Unresolved reference: copy
+e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelBrewingScreen.kt:126:80 None of the following functions can be called with the arguments supplied: 
+public fun Modifier.background(brush: Brush, shape: Shape = ..., alpha: Float = ...): Modifier defined in androidx.compose.foundation
+public fun Modifier.background(color: Color, shape: Shape = ...): Modifier defined in androidx.compose.foundation
 
 > Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnimations.kt:339:27 Type mismatch: inferred type is TweenSpec<???> but Float was expected
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnimations.kt:340:25 Type mismatch: inferred type is TweenSpec<???> but Float was expected
 
 FAILURE: Build failed with an exception.
 
@@ -244,6 +251,6 @@ Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilat
 	... 2 more
 
 
-BUILD FAILED in 32s
+BUILD FAILED in 54s
 28 actionable tasks: 28 executed
 EXIT=1
