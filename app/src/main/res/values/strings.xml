@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Scritchy Scratchy</string>
+    <string name="app_name_watch">Scritchy Watch</string>
+    <!-- Türkçe + English -->
+    <string name="balance">Bakiye</string>
+    <string name="shop">Dükkan</string>
+    <string name="scratch">Kazı</string>
+    <string name="upgrades">Yükseltme</string>
+    <string name="prestige">Prestij</string>
+    <string name="auto">Oto-Kazı</string>
+</resources>

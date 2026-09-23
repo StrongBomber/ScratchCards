@@ -1,0 +1,33 @@
+# Gradle
+.gradle/
+build/
+app/build/
+local.properties
+*.keystore
+*.jks
+
+# Android
+*.apk
+*.aab
+*.ap_
+*.dex
+captures/
+.externalNativeBuild/
+.cxx/
+*.hprof
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+.vscode/
+*.log
+
+# Keep APK artifacts? track in releases only
+# app/build/outputs/
+
+# Secrets
+keystore.properties
+signing.properties
