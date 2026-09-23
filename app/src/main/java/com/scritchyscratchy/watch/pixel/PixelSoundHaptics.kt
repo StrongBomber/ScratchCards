@@ -102,7 +102,7 @@ object PixelSoundManager {
     var enabled = true
     var volume = 0.6f
 
-    fun setVolume(v: Float) {
+    fun setVolumeLevel(v: Float) {
         volume = v.coerceIn(0f, 1f)
         try {
             toneGen?.release()
@@ -211,7 +211,7 @@ object PixelHaptics {
     var enabled = true
     var intensity = 1f
 
-    fun setIntensity(v: Float) { intensity = v.coerceIn(0f, 1f) }
+    fun setHapticIntensity(v: Float) { intensity = v.coerceIn(0f, 1f) }
 
     // Haptic names
     fun nameFor(h: PixelHaptic): String = when (h) {
