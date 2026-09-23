@@ -57,7 +57,7 @@ object PixelQuests {
         if (!q.isDone(state)) return state
         return state.copy(
             balance = state.balance + q.reward,
-            prestige = state.prestige.copy(jackpotPoints = state.prestige.jackpotPoints + q.jp),
+            prestige = state.prestige.copy(jackPoints = state.prestige.jackPoints + q.jp),
             history = (listOf("Görev: ${q.title} +${q.reward}$ +${q.jp}JP") + state.history).take(20)
         )
     }

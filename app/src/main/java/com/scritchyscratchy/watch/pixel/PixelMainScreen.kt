@@ -110,7 +110,7 @@ fun PixelWatchTopBar(state: GameState, tick: Int, modifier: Modifier = Modifier)
                     Modifier.background(PixelPalette.GoldDark, RoundedCornerShape(6.dp)).padding(horizontal = 8.dp, vertical = 2.dp)
                 ) {
                     Text(
-                        "JP ${state.prestige.jackpotPoints} • Lv ${state.prestige.prestigeCount}",
+                        "JP ${state.prestige.jackPoints} • Lv ${state.prestige.prestigeCount}",
                         color = Color.Black,
                         fontFamily = PixelTypography.LabelPixel.fontFamily,
                         fontSize = 7.sp,

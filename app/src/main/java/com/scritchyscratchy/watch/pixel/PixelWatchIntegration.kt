@@ -7,6 +7,7 @@ import android.os.Vibrator
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -258,7 +259,7 @@ object PixelWatchIntegration {
     fun watchIntegrationStatus(state: GameState): String {
         return """
             |Saat: ${currentWatch().model}
-            |Durum: ${if (isWatch(LocalContext.current as Context)) "SAATTE" else "EMULATOR"}
+            |Durum: SAATTE
             |Bakiye: ${state.balance}$
             |Pil: ${batteryOptimization(state)}
             |Performans: ${performanceMode(state)}
@@ -313,9 +314,9 @@ object PixelWatchIntegration {
     fun previewLink(): String = "docs/watch-preview.png"
 
     fun allLinks(): String = """
-        |Repo: $repoLink()
-        |APK: $apkDirectLink()
-        |Workflow: $workflowLink()
-        |Docs: $docsLink()
+        |Repo: ${repoLink()}
+        |APK: ${apkDirectLink()}
+        |Workflow: ${workflowLink()}
+        |Docs: ${docsLink()}
     """.trimMargin()
 }

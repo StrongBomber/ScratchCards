@@ -2,11 +2,13 @@ package com.scritchyscratchy.watch.pixel
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.border
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
@@ -196,10 +198,10 @@ fun PixelLevelUpBurst(
     var scale by remember(level) { mutableStateOf(0.5f) }
     var alpha by remember(level) { mutableStateOf(0f) }
     LaunchedEffect(level) {
-        animate(0.5f, 1.2f, tween(300, easing = OvershootInterpolator().toEasing())) { v, _ -> scale = v }
-        animate(0f, 1f, tween(200)) { v, _ -> alpha = v }
+        scale = 1.2f; kotlinx.coroutines.delay(300)
+        alpha = 1f; kotlinx.coroutines.delay(200)
         kotlinx.coroutines.delay(600)
-        animate(1f, 0f, tween(300)) { v, _ -> alpha = v }
+        alpha = 0f; kotlinx.coroutines.delay(300)
     }
     Box(
         modifier
@@ -234,9 +236,9 @@ fun PixelShake(
     LaunchedEffect(trigger) {
         if (trigger == 0) return@LaunchedEffect
         repeat(6) { i ->
-            animate(0f, if (i % 2 == 0) 6f else -6f, tween(40)) { v, _ -> offset = v }
+            offset = if (i % 2 == 0) 6f else -6f; kotlinx.coroutines.delay(40)
         }
-        animate(offset, 0f, tween(80)) { v, _ -> offset = v }
+        offset = 0f; kotlinx.coroutines.delay(80)
     }
     Box(modifier.graphicsLayer(translationX = offset), content = content)
 }
@@ -251,9 +253,7 @@ fun PixelCountUp(
 ) {
     var current by remember(target) { mutableStateOf(0L) }
     LaunchedEffect(target) {
-        animate(0f, 1f, tween(duration, easing = FastOutSlowInEasing)) { v, _ ->
-            current = (target * v).toLong()
-        }
+        current = target
         current = target
     }
     Text(

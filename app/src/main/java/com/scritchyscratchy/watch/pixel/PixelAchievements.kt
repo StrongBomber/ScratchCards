@@ -276,7 +276,7 @@ object PixelAchievements {
         "rich_10k" -> (state.balance / 10000f).coerceIn(0f, 1f)
         "rich_100k" -> (state.balance / 100000f).coerceIn(0f, 1f)
         "rich_million" -> (state.balance / 1_000_000f).coerceIn(0f, 1f)
-        else -> if (all.find { it.id == id }?.condition(state) == true) 1f else 0f
+        else -> if (all.find { it.id == id }?.condition?.invoke(state) == true) 1f else 0f
     }
 
     // Pixel renk

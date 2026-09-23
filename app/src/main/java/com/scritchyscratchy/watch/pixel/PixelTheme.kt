@@ -66,6 +66,12 @@ object PixelPalette {
     val Gray700 = Color(0xFF616161)
     val Gray900 = Color(0xFF212121)
 
+    // Compat aliases for old code (PixelMainScreen etc.)
+    val Background = BgDeep
+    val Muted = Gray500
+    val Surface = BgCard
+    val Cyan = Sapphire
+
     // Neon glow
     val NeonGold = Color(0xFFFFD600).copy(alpha = 0.5f)
     val NeonEmerald = Color(0xFF00E676).copy(alpha = 0.5f)
@@ -156,6 +162,8 @@ object PixelTypography {
         fontSize = 9.sp,
         color = PixelPalette.Ruby
     )
+    // Compat
+    val ValuePixel = MonoGold
 }
 
 // ============= PIXEL MODIFIERS =============

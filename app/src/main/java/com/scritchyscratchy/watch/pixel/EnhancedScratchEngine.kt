@@ -1,12 +1,15 @@
 package com.scritchyscratchy.watch.pixel
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.border
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
@@ -236,7 +239,7 @@ fun EnhancedPixelScratchCanvas(
                             lastPos = change.position
                             lastTime = now
                             // metrics hesapla
-                            val m = state.metrics(size.width, size.height)
+                            val m = state.metrics(size.width.toFloat(), size.height.toFloat())
                             metrics = m
                             onProgress(m.coverage, m)
                             if (m.coverage >= 0.72f && !revealed) {
@@ -246,7 +249,7 @@ fun EnhancedPixelScratchCanvas(
                         },
                         onDragEnd = {
                             state.endStroke()
-                            val m = state.metrics(size.width, size.height)
+                            val m = state.metrics(size.width.toFloat(), size.height.toFloat())
                             metrics = m
                             onProgress(m.coverage, m)
                             if (m.coverage >= 0.72f && !revealed) {

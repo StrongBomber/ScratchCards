@@ -46,7 +46,7 @@ object PixelBank {
     }
     fun investmentReturn(invest: Long, days: Int): Long = (invest * (1 + 0.05f * days)).toLong()
     fun vaultValue(state: GameState): Long = state.balance + state.totalWon
-    fun netWorth(state: GameState): Long = vaultValue(state) + state.prestige.jackpotPoints * 1000L
+    fun netWorth(state: GameState): Long = vaultValue(state) + state.prestige.jackPoints * 1000L
     fun rankByWorth(state: GameState): String = when {
         netWorth(state) > 1000000 -> "Milyoner"
         netWorth(state) > 100000 -> "Zengin"
