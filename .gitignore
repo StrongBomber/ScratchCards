@@ -6,8 +6,9 @@ local.properties
 *.keystore
 *.jks
 
-# Android
+# Android (allow apk/ for direct download)
 *.apk
+!apk/*.apk
 *.aab
 *.ap_
 *.dex

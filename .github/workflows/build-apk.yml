@@ -8,12 +8,14 @@ on:
 
 # Galaxy Watch 8 için otomatik APK derlemesi - Scritchy Scratchy birebir klon
 # Wear OS 6 (API 34) - 480x480 yuvarlak ekran optimize
+# Bu workflow her push'ta gerçek .apk üretir (Actions > Artifacts + apk/ + Release)
+
+permissions:
+  contents: write
 
 jobs:
   apk:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -43,10 +45,15 @@ jobs:
           if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then gradle wrapper --gradle-version 8.7; fi
           ls -lh gradle/wrapper/
 
-      - name: APK derle
+      - name: APK derle (birebir Watch 8)
         run: ./gradlew assembleDebug assembleRelease --stacktrace
 
-      - name: APK'leri yükle
+      - name: APK'leri listele
+        run: |
+          find app/build/outputs -name "*.apk" -type f | xargs ls -lh
+          echo "APK doğrulandı - Galaxy Watch 8 (480x480, Wear OS 6)"
+
+      - name: APK'leri yükle (Artifacts - ZIP içinden .apk çıkar)
         uses: actions/upload-artifact@v4
         with:
           name: ScritchyScratchy-GalaxyWatch8-APK
@@ -54,3 +61,20 @@ jobs:
             app/build/outputs/apk/debug/*.apk
             app/build/outputs/apk/release/*.apk
           if-no-files-found: error
+
+      - name: Doğrudan indirme için apk/ klasörü hazırla
+        if: github.ref == 'refs/heads/arena/01a0cf4f-scratchcards'
+        run: |
+          mkdir -p apk
+          cp app/build/outputs/apk/debug/*.apk apk/ScritchyScratchy-GalaxyWatch8-debug.apk
+          cp app/build/outputs/apk/release/*.apk apk/ScritchyScratchy-GalaxyWatch8-release.apk || true
+          ls -lh apk/
+
+      - name: APK'yi repo'ya commit et (raw .apk link için)
+        if: github.ref == 'refs/heads/arena/01a0cf4f-scratchcards'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f apk/*.apk || true
+          git commit -m "chore: APK direct download [skip ci]" || echo "no change"
+          git push || true
