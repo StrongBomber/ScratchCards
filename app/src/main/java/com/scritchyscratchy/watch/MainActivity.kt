@@ -77,6 +77,7 @@ fun ScritchyPixelApp(vm: GameViewModel = viewModel()) {
                     2 -> PixelUpgradeScreen(state, vm, onBack = { selectedTab = 0 })
                     3 -> PixelPrestigeScreen(state, vm, onBack = { selectedTab = 0 })
                     4 -> PixelWorldScreen(state, onBack = { selectedTab = 0 })
+                    5 -> PixelBrewingScreen(state, vm, onBack = { selectedTab = 0 })
                 }
                 // Scanlines & vignette overlay (pixel CRT)
                 PixelScanlines(Modifier.fillMaxSize(), 0.06f)
@@ -102,10 +103,10 @@ fun ScritchyPixelApp(vm: GameViewModel = viewModel()) {
             // Bottom pixel dots + brush hint
             Column(Modifier.align(Alignment.BottomCenter).padding(bottom=6.dp), horizontalAlignment=Alignment.CenterHorizontally) {
                 Row(horizontalArrangement=Arrangement.spacedBy(3.dp)) {
-                    for(i in 0..4){ Box(Modifier.size(if(selectedTab==i)5.dp else 3.dp).clip(CircleShape).background(if(selectedTab==i) PixelPalette.Gold else Color.White.copy(alpha=0.35f))) }
+                    for(i in 0..5){ Box(Modifier.size(if(selectedTab==i)5.dp else 3.dp).clip(CircleShape).background(if(selectedTab==i) PixelPalette.Gold else Color.White.copy(alpha=0.35f))) }
                 }
                 Spacer(Modifier.height(2.dp))
-                Text(when(selectedTab){0->"${brush.display} ${brush.name} • ${PixelWorld.current(state).icon}";1->"MARKET";2->"UPGRADE";3->"PRESTIGE";else->"WORLD"}, color=PixelPalette.Gray500, fontSize=5.sp, fontFamily=PixelTypography.CaptionPixel.fontFamily)
+                Text(when(selectedTab){0->"${brush.display} ${brush.name} • ${PixelWorld.current(state).icon}";1->"MARKET";2->"UPGRADE";3->"PRESTIGE";4->"WORLD";else->"ÇAY DEMLE 🍵"}, color=PixelPalette.Gray500, fontSize=5.sp, fontFamily=PixelTypography.CaptionPixel.fontFamily)
             }
         }
     }
@@ -169,6 +170,15 @@ fun PixelScratchScreen(state: GameState, vm: GameViewModel, brush: BrushType, on
                     Chip(onClick={onNavigate(2)}, label={ Text("⬆️ Yükselt", fontSize=7.sp)}, colors=ChipDefaults.chipColors(backgroundColor=PixelPalette.Sapphire), modifier=Modifier.weight(1f))
                     Chip(onClick={onNavigate(3)}, label={ Text("♻️ Prestij", fontSize=7.sp)}, colors=ChipDefaults.chipColors(backgroundColor=PixelPalette.Amethyst), modifier=Modifier.weight(1f))
                     Chip(onClick={onNavigate(4)}, label={ Text("🌍 Dünya", fontSize=7.sp)}, colors=ChipDefaults.chipColors(backgroundColor=PixelPalette.Topaz), modifier=Modifier.weight(1f))
+                }
+            }
+            item{
+                Chip(onClick={onNavigate(5)}, label={ Text("🍵 ÇAY DEMLE • ${PixelBrewing.levelText()} • ${PixelBrewing.favoriteText().take(12)}", fontSize=7.sp, fontWeight=FontWeight.Black)}, colors=ChipDefaults.chipColors(backgroundColor=Color(0xFF2E8B57)), modifier=Modifier.fillMaxWidth())
+            }
+            item{
+                Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(8.dp)).background(Color(0xFF1A2E1A)).padding(6.dp)){
+                    Text(PixelBrewing.tip(), color=PixelPalette.Gold, fontSize=6.sp, fontStyle=androidx.compose.ui.text.font.FontStyle.Italic, textAlign=TextAlign.Center)
+                    Text(PixelBrewing.seasonBonus()+" • "+PixelBrewing.timeOfDayBonus(), color=Color.White.copy(alpha=0.7f), fontSize=5.sp, textAlign=TextAlign.Center)
                 }
             }
             if(state.balance<0){ item{ Chip(onClick={vm.takeLoan(context)}, label={ Text("💳 KREDİ +400$", fontSize=8.sp, fontWeight=FontWeight.Black)}, colors=ChipDefaults.chipColors(backgroundColor=PixelPalette.Ruby), modifier=Modifier.fillMaxWidth()) } }
