@@ -13,6 +13,7 @@
 > Task :app:parseDebugLocalResources
 > Task :app:processDebugMainManifest
 > Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
 > Task :app:javaPreCompileDebug
 > Task :app:mergeDebugShaders
 > Task :app:compileDebugShaders NO-SOURCE
@@ -20,103 +21,21 @@
 > Task :app:mergeDebugAssets
 > Task :app:compressDebugAssets
 > Task :app:desugarDebugFileDependencies
-> Task :app:processDebugManifestForPackage
-> Task :app:checkDebugDuplicateClasses
 > Task :app:mergeDebugStartupProfile
+> Task :app:processDebugResources
 > Task :app:mergeDebugJniLibFolders
-> Task :app:mergeLibDexDebug
+> Task :app:checkDebugDuplicateClasses
 > Task :app:mergeDebugNativeLibs NO-SOURCE
 > Task :app:stripDebugDebugSymbols NO-SOURCE
-> Task :app:processDebugResources
+> Task :app:mergeLibDexDebug
 > Task :app:validateSigningDebug
 > Task :app:writeDebugAppMetadata
 > Task :app:writeDebugSigningConfigVersions
 > Task :app:mergeExtDexDebug
 
 > Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/EnhancedScratchEngine.kt:239:51 Type mismatch: inferred type is Int but Float was expected
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/EnhancedScratchEngine.kt:239:63 Type mismatch: inferred type is Int but Float was expected
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/EnhancedScratchEngine.kt:249:51 Type mismatch: inferred type is Int but Float was expected
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/EnhancedScratchEngine.kt:249:63 Type mismatch: inferred type is Int but Float was expected
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/EnhancedScratchEngine.kt:279:94 Unresolved reference: Size
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/EnhancedScratchEngine.kt:296:24 Unresolved reference: Size
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/EnhancedScratchEngine.kt:303:24 Unresolved reference: Size
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/EnhancedScratchEngine.kt:375:26 Unresolved reference: border
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/EnhancedScratchEngine.kt:426:22 Unresolved reference: border
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/EnhancedScratchEngine.kt:460:30 Unresolved reference: border
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/EnhancedScratchEngine.kt:561:18 Unresolved reference: border
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/EnhancedScratchEngine.kt:576:38 Unresolved reference: border
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAchievements.kt:279:47 Reference has a nullable type '(GameState) -> Boolean', use explicit '?.invoke()' to make a function-like call instead
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnalytics.kt:59:186 Unresolved reference: pixelProgress
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnalytics.kt:82:40 Unresolved reference: boardTitle
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnalytics.kt:177:69 Unresolved reference: priceRarity
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnalytics.kt:177:137 Unresolved reference: priceRarity
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnalytics.kt:181:48 Unresolved reference: dayLabel
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnimations.kt:149:18 Unresolved reference: border
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnimations.kt:199:29 Type mismatch: inferred type is TweenSpec<???> but Float was expected
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnimations.kt:200:25 Type mismatch: inferred type is TweenSpec<???> but Float was expected
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnimations.kt:202:25 Type mismatch: inferred type is TweenSpec<???> but Float was expected
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnimations.kt:209:14 Unresolved reference: border
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnimations.kt:237:54 Type mismatch: inferred type is TweenSpec<???> but Float was expected
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnimations.kt:239:29 Type mismatch: inferred type is TweenSpec<???> but Float was expected
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnimations.kt:254:25 Type mismatch: inferred type is TweenSpec<???> but Float was expected
 e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnimations.kt:339:27 Type mismatch: inferred type is TweenSpec<???> but Float was expected
 e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelAnimations.kt:340:25 Type mismatch: inferred type is TweenSpec<???> but Float was expected
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelBank.kt:49:79 Unresolved reference: jackpotPoints
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:50:56 Unresolved reference: Background
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:96:50 Unresolved reference: ValuePixel
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:102:42 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:113:46 Unresolved reference: jackpotPoints
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:122:33 Unresolved reference: iconFor
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:132:42 Unresolved reference: Cyan
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:133:50 Unresolved reference: ValuePixel
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:138:42 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:161:26 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:168:57 Unresolved reference: Surface
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:221:38 Unresolved reference: emoji
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:222:172 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:223:136 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:226:94 Unresolved reference: Surface
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:235:61 Unresolved reference: Surface
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:238:38 Unresolved reference: Cyan
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:251:34 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:283:36 Unresolved reference: emoji
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:291:33 Unresolved reference: descTr
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:292:38 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:300:106 Unresolved reference: ValuePixel
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:301:48 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:304:105 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:305:50 Unresolved reference: ValuePixel
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:326:38 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:345:46 Unresolved reference: Surface
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:350:37 Unresolved reference: emoji
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:351:34 Unresolved reference: descTr
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:351:63 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:356:172 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:377:145 Unresolved reference: Surface
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:382:32 Unresolved reference: dayLabel
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:382:164 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:399:65 Unresolved reference: Surface
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:401:38 Unresolved reference: weekCompleteText
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:402:42 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:411:39 Unresolved reference: questsText
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:412:61 Unresolved reference: Surface
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:413:47 Unresolved reference: Cyan
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:425:44 Unresolved reference: nextTitle
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:426:79 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:437:92 Unresolved reference: Surface
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:439:39 Unresolved reference: boardTitle
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:454:226 Unresolved reference: Surface
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:455:292 Unresolved reference: Surface
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelMainScreen.kt:458:71 Unresolved reference: Muted
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelQuests.kt:60:44 Cannot find a parameter with this name: jackpotPoints
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelQuests.kt:60:75 Unresolved reference: jackpotPoints
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelWatchIntegration.kt:258:9 Functions which invoke @Composable functions must be marked with the @Composable annotation
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelWatchIntegration.kt:261:48 @Composable invocations can only happen from the context of a @Composable function
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelWatchIntegration.kt:316:17 Function invocation 'repoLink()' expected
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelWatchIntegration.kt:317:16 Function invocation 'apkDirectLink()' expected
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelWatchIntegration.kt:318:21 Function invocation 'workflowLink()' expected
-e: file:///home/runner/work/ScratchCards/ScratchCards/app/src/main/java/com/scritchyscratchy/watch/pixel/PixelWatchIntegration.kt:319:17 Function invocation 'docsLink()' expected
 
 FAILURE: Build failed with an exception.
 
@@ -325,6 +244,6 @@ Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilat
 	... 2 more
 
 
-BUILD FAILED in 28s
+BUILD FAILED in 32s
 28 actionable tasks: 28 executed
 EXIT=1
