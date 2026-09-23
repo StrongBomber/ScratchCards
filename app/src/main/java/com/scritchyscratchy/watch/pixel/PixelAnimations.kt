@@ -336,8 +336,7 @@ fun PixelFloatingText(
     var offsetY by remember { mutableStateOf(0f) }
     var alpha by remember { mutableStateOf(1f) }
     LaunchedEffect(start) {
-        animate(0f, -30f, tween(800, easing = FastOutSlowInEasing)) { v, _ -> offsetY = v }
-        animate(1f, 0f, tween(800, delayMillis = 200)) { v, _ -> alpha = v }
+        offsetY = -30f; alpha = 0f; kotlinx.coroutines.delay(800)
         onComplete()
     }
     Text(
