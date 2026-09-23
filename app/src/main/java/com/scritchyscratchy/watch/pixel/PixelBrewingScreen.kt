@@ -48,7 +48,7 @@ fun PixelBrewingScreen(state: GameState, vm: GameViewModel, onBack:()->Unit){
                     val sel = tea==selectedTea
                     Chip(onClick={ selectedTea=tea; temp=tea.optimalTemp; time=tea.brewTime }, label={
                         Row(Modifier.fillMaxWidth(), horizontalArrangement=Arrangement.SpaceBetween, verticalAlignment=Alignment.CenterVertically){
-                            Text("${tea.icon} ${tea.name}", fontSize=7.sp, color=if(sel) Color.Black else Color.White, fontWeight=FontWeight.Bold)
+                            Text("${tea.icon} ${tea.displayName}", fontSize=7.sp, color=if(sel) Color.Black else Color.White, fontWeight=FontWeight.Bold)
                             Text("${tea.basePrice}$", fontSize=7.sp, color=PixelPalette.Gold)
                         }
                     }, colors=ChipDefaults.chipColors(backgroundColor=if(sel) PixelPalette.Gold else PixelPalette.BgCardLight), modifier=Modifier.fillMaxWidth())
@@ -58,8 +58,8 @@ fun PixelBrewingScreen(state: GameState, vm: GameViewModel, onBack:()->Unit){
         // Method + Water
         item{
             Row(horizontalArrangement=Arrangement.spacedBy(3.dp), modifier=Modifier.fillMaxWidth()){
-                Chip(onClick={}, label={ Text(selectedMethod.icon+" "+selectedMethod.name, fontSize=6.sp)}, colors=ChipDefaults.chipColors(backgroundColor=PixelPalette.BgCard), modifier=Modifier.weight(1f))
-                Chip(onClick={}, label={ Text(selectedWater.icon+" "+selectedWater.name, fontSize=6.sp)}, colors=ChipDefaults.chipColors(backgroundColor=PixelPalette.BgCard), modifier=Modifier.weight(1f))
+                Chip(onClick={}, label={ Text(selectedMethod.icon+" "+selectedMethod.displayName, fontSize=6.sp)}, colors=ChipDefaults.chipColors(backgroundColor=PixelPalette.BgCard), modifier=Modifier.weight(1f))
+                Chip(onClick={}, label={ Text(selectedWater.icon+" "+selectedWater.displayName, fontSize=6.sp)}, colors=ChipDefaults.chipColors(backgroundColor=PixelPalette.BgCard), modifier=Modifier.weight(1f))
             }
         }
         // Controls
@@ -101,7 +101,7 @@ fun PixelBrewingScreen(state: GameState, vm: GameViewModel, onBack:()->Unit){
             val recipe = BrewRecipe(selectedTea, selectedMethod, selectedWater, temp, time, sugar, leaf)
             val previewScore = recipe.score().toInt()
             val previewQuality = recipe.quality()
-            Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(8.dp)).background(previewQuality.color.copy(alpha=0.2f)).padding(6.dp), horizontalAlignment=Alignment.CenterHorizontally){
+            Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(8.dp)).background(androidx.compose.ui.graphics.Color(previewQuality.color).copy(alpha=0.2f)).padding(6.dp), horizontalAlignment=Alignment.CenterHorizontally){
                 Text("Önizleme: ${previewQuality.icon} ${previewQuality.label} $previewScore/100", color=Color.White, fontSize=7.sp, fontWeight=FontWeight.Black)
                 Text("Ödül: ${recipe.payout()}$ • XP ${when(previewQuality){BrewQuality.PERFECT->50; BrewQuality.EXCELLENT->30; BrewQuality.GOOD->15; else->5}}", color=PixelPalette.Gold, fontSize=6.sp)
             }
@@ -123,7 +123,7 @@ fun PixelBrewingScreen(state: GameState, vm: GameViewModel, onBack:()->Unit){
         if(lastResult!=null){
             item{
                 val res = lastResult!!
-                Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(10.dp)).background(res.quality.color).padding(8.dp), horizontalAlignment=Alignment.CenterHorizontally){
+                Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(10.dp)).background(androidx.compose.ui.graphics.Color(res.quality.color)).padding(8.dp), horizontalAlignment=Alignment.CenterHorizontally){
                     Text("${res.quality.icon} ${res.quality.label}", color=if(res.quality==BrewQuality.PERFECT) Color.Black else Color.White, fontSize=9.sp, fontWeight=FontWeight.Black)
                     Text("${res.score.toInt()}/100 • +${res.payout}$ • +${res.xp} XP", color=Color.Black.copy(alpha=0.7f), fontSize=6.sp)
                     Text(PixelBrewing.brewAnimation(1f), color=Color.Black, fontSize=6.sp)

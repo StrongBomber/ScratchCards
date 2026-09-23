@@ -7,7 +7,7 @@ import kotlin.math.*
 // PIXEL BREWING - DEMLEME SİSTEMİ - ÇAY DEMLEME MEKANİĞİ
 // Mükemmel oyun için demleme unutulmadı - çay, kahve, bitki çayı
 
-enum class TeaType(val id:String, val name:String, val icon:String, val basePrice:Int, val brewTime:Int, val optimalTemp:Int, val rarity:Int, val color:Long) {
+enum class TeaType(val id:String, val displayName:String, val icon:String, val basePrice:Int, val brewTime:Int, val optimalTemp:Int, val rarity:Int, val color:Long) {
     BLACK("black","Siyah Çay","🍵",10, 5, 95, 1, 0xFF3E2723),
     GREEN("green","Yeşil Çay","🍃",15, 3, 80, 1, 0xFF558B2F),
     EARL_GREY("earl","Earl Grey","☕",25, 4, 90, 2, 0xFF4E342E),
@@ -30,7 +30,7 @@ enum class TeaType(val id:String, val name:String, val icon:String, val basePric
     VOID_TEA("void","Boşluk Çayı","🕳️",500, 15, 66, 5, 0xFF000000),
 }
 
-enum class BrewMethod(val id:String, val name:String, val icon:String, val tempMod:Int, val timeMod:Int, val bonus:Float) {
+enum class BrewMethod(val id:String, val displayName:String, val icon:String, val tempMod:Int, val timeMod:Int, val bonus:Float) {
     CLASSIC("classic","Klasik Demleme","🫖",0,0,1.0f),
     GONGFU("gongfu","Gongfu","🏮", -5, -2, 1.3f),
     COLD_BREW("cold","Soğuk Dem","🧊", -30, 20, 1.5f),
@@ -40,7 +40,7 @@ enum class BrewMethod(val id:String, val name:String, val icon:String, val tempM
     CEREMONY("ceremony","Seremoni","⛩️", -10, 3, 2.0f),
 }
 
-enum class WaterType(val id:String, val name:String, val icon:String, val purity:Float, val price:Int) {
+enum class WaterType(val id:String, val displayName:String, val icon:String, val purity:Float, val price:Int) {
     TAP("tap","Musluk","🚰",0.7f,0),
     FILTERED("filtered","Filtre","💧",0.9f,5),
     SPRING("spring","Kaynak","🏔️",1.0f,10),
@@ -214,7 +214,7 @@ object PixelBrewing {
     fun brewForMoney(state: GameState):Pair<GameState, String> {
         val tea = suggestTea(state)
         val res = quickBrew(tea)
-        val ns = state.copy(balance = state.balance + res.payout, history = (listOf("Demleme: ${tea.name} ${res.quality.icon} +${res.payout}$") + state.history).take(20))
+        val ns = state.copy(balance = state.balance + res.payout, history = (listOf("Demleme: ${tea.displayName} ${res.quality.icon} +${res.payout}$") + state.history).take(20))
         return ns to "${tea.icon} ${res.quality.label} +${res.payout}$"
     }
 
@@ -228,9 +228,9 @@ object PixelBrewing {
     fun allMethods():List<BrewMethod> = BrewMethod.values().toList()
     fun allWaters():List<WaterType> = WaterType.values().toList()
 
-    fun teaInfo(tea:TeaType):String = "${tea.icon} ${tea.name} ${tea.basePrice}$ ${tea.brewTime}s ${tea.optimalTemp}° R${tea.rarity}"
-    fun methodInfo(m:BrewMethod):String = "${m.icon} ${m.name} x${m.bonus} ${m.tempMod}° ${m.timeMod}s"
-    fun waterInfo(w:WaterType):String = "${w.icon} ${w.name} x${w.purity} ${w.price}$"
+    fun teaInfo(tea:TeaType):String = "${tea.icon} ${tea.displayName} ${tea.basePrice}$ ${tea.brewTime}s ${tea.optimalTemp}° R${tea.rarity}"
+    fun methodInfo(m:BrewMethod):String = "${m.icon} ${m.displayName} x${m.bonus} ${m.tempMod}° ${m.timeMod}s"
+    fun waterInfo(w:WaterType):String = "${w.icon} ${w.displayName} x${w.purity} ${w.price}$"
 
     fun qualityColor(q:BrewQuality):Long = q.color
     fun qualityIcon(q:BrewQuality):String = q.icon
@@ -269,9 +269,9 @@ object PixelBrewing {
 
     fun statsText():String = "${stats.totalBrews} demleme • ${stats.perfectBrews} kusursuz • ${stats.totalEarned}$ • Lv${stats.level}"
     fun historyText():String = history.take(5).joinToString("\n"){ "${it.recipe.tea.icon} ${it.quality.label} ${it.score.toInt()} +${it.payout}$" }
-    fun favoriteText():String = stats.favoriteTea?.let{ "Favori: ${it.icon} ${it.name}" } ?: "Favori yok"
+    fun favoriteText():String = stats.favoriteTea?.let{ "Favori: ${it.icon} ${it.displayName}" } ?: "Favori yok"
     fun unlockText():String = "${unlockedTeas().size}/${allTeas().size} çay açık"
-    fun nextUnlock():String = lockedTeas().firstOrNull()?.let{ "Sonraki: ${it.name} ${it.basePrice}$"} ?: "Hepsi açık!"
+    fun nextUnlock():String = lockedTeas().firstOrNull()?.let{ "Sonraki: ${it.displayName} ${it.basePrice}$"} ?: "Hepsi açık!"
 
     fun brewAnimation(progress:Float):String {
         val filled = (progress*10).toInt()
@@ -328,8 +328,8 @@ object PixelBrewing {
     fun equipment():List<String> = listOf("Semaver","French Press","Gongfu Seti","Soğuk Dem Sürahisi")
     fun equipmentText():String = equipment().joinToString(", ")
 
-    fun waterShop():String = allWaters().joinToString("\n"){ "${it.icon} ${it.name} ${it.price}$" }
-    fun teaShop(state:GameState):String = unlockedTeas().joinToString("\n"){ "${it.icon} ${it.name} ${it.basePrice}$" }
+    fun waterShop():String = allWaters().joinToString("\n"){ "${it.icon} ${it.displayName} ${it.price}$" }
+    fun teaShop(state:GameState):String = unlockedTeas().joinToString("\n"){ "${it.icon} ${it.displayName} ${it.basePrice}$" }
 
     fun brewTimeText(recipe:BrewRecipe):String = "${recipe.time}s"
     fun tempText(recipe:BrewRecipe):String = "${recipe.temp}°C"
@@ -337,7 +337,7 @@ object PixelBrewing {
     fun perfectTemp(tea:TeaType):String = "${tea.optimalTemp}°C"
     fun perfectTime(tea:TeaType):String = "${tea.brewTime}s"
 
-    fun guide(tea:TeaType):String = "Kılavuz: ${tea.name} ${perfectTemp(tea)} ${perfectTime(tea)} ${tea.icon}"
+    fun guide(tea:TeaType):String = "Kılavuz: ${tea.displayName} ${perfectTemp(tea)} ${perfectTime(tea)} ${tea.icon}"
 
     fun allGuides():String = allTeas().joinToString("\n"){ guide(it) }
 
@@ -363,7 +363,7 @@ object PixelBrewing {
 
     fun priceTrend(tea:TeaType):String = "Fiyat trendi: ${if(Random.nextBoolean()) "↗" else "↘"}"
 
-    fun marketPrice(tea:TeaType, state:GameState):Int = (tea.basePrice * PixelMarket.activeFor(state)?.multiplier ?: 1.0f).toInt()
+    fun marketPrice(tea:TeaType, state:GameState):Int = (tea.basePrice * (PixelMarket.activeFor(state)?.multiplier ?: 1.0f)).toInt()
 
     fun seasonBonus():String = "Mevsim: Kış +10% sıcak çay bonusu"
 
